@@ -21,7 +21,13 @@ class CounterWidget extends StatefulWidget {
 }
 
 class _CounterWidgetState extends State<CounterWidget> {
-  int _counter = 0; // This is our STATE
+  int _counter = 0; 
+
+Color getCounterColor() {
+  if (_counter == 0) return Colors.red;    // Level 2: Red at 0
+  if (_counter > 50) return Colors.green;  // Level 2: Green above 50
+  return Colors.black;                     // Default
+}
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,10 @@ class _CounterWidgetState extends State<CounterWidget> {
               padding: EdgeInsets.all(20),
               child: Text(
                 '$_counter',
-                style: TextStyle(fontSize: 50.0),
+                style: TextStyle(
+                  fontSize: 50.0,
+                  color: getCounterColor(),
+                ),
               ),
             ),
           ),
@@ -51,6 +60,16 @@ class _CounterWidgetState extends State<CounterWidget> {
                   });
                 },
                 child: Text("+"),
+              ),
+              SizedBox(width: 10),
+              // Decrement Button
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    if (_counter > 0) _counter--; 
+                  });
+                },
+                child: Text("-"),
               ),
               SizedBox(width: 20), // Spacing between buttons
               ElevatedButton(
