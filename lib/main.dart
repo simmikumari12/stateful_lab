@@ -41,6 +41,28 @@ class _CounterWidgetState extends State<CounterWidget> {
             ),
           ),
           SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    if (_counter < 100) _counter++; // Increment logic
+                  });
+                },
+                child: Text("+"),
+              ),
+              SizedBox(width: 20), // Spacing between buttons
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _counter = 0; // Reset logic
+                  });
+                },
+                child: Text("Reset"),
+              ),
+            ],
+          ),
           Slider(
             min: 0, max: 100,
             value: _counter.toDouble(),
